@@ -13,7 +13,7 @@ export const Projects = () => {
       aria-labelledby="work-heading"
       className="section-pad container-shell"
     >
-      <div className="flex flex-col gap-16">
+      <div className="flex flex-col gap-10 sm:gap-16">
         <motion.div
           initial="hidden"
           whileInView="visible"
@@ -27,8 +27,8 @@ export const Projects = () => {
               id="work-heading"
               className="display-title mt-6 text-ink"
             >
-              Concept case studies,
-              <br />
+              Concept case studies,{" "}
+              <br className="hidden sm:block" />
               <span className="text-gold">built to show our range.</span>
             </h2>
           </div>

@@ -95,9 +95,13 @@ export const ContactForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} noValidate className="flex flex-col gap-5">
-      <div className="grid gap-5 sm:grid-cols-2">
-        <label className="flex flex-col">
+    <form
+      onSubmit={handleSubmit}
+      noValidate
+      className="flex min-w-0 max-w-full flex-col gap-5"
+    >
+      <div className="grid min-w-0 gap-5 sm:grid-cols-2">
+        <label className="flex min-w-0 flex-col">
           <span className="field-label">
             Name <span aria-hidden className="text-burgundy">*</span>
           </span>
@@ -122,7 +126,7 @@ export const ContactForm = () => {
           )}
         </label>
 
-        <label className="flex flex-col">
+        <label className="flex min-w-0 flex-col">
           <span className="field-label">
             Email <span aria-hidden className="text-burgundy">*</span>
           </span>
@@ -148,7 +152,7 @@ export const ContactForm = () => {
         </label>
       </div>
 
-      <label className="flex flex-col">
+      <label className="flex min-w-0 flex-col">
         <span className="field-label">Company</span>
         <input
           type="text"
@@ -161,8 +165,8 @@ export const ContactForm = () => {
         />
       </label>
 
-      <div className="grid gap-5 sm:grid-cols-3">
-        <label className="flex flex-col">
+      <div className="grid min-w-0 gap-5 md:grid-cols-3">
+        <label className="flex min-w-0 flex-col">
           <span className="field-label">Service interest</span>
           <select
             name="service"
@@ -178,7 +182,7 @@ export const ContactForm = () => {
           </select>
         </label>
 
-        <label className="flex flex-col">
+        <label className="flex min-w-0 flex-col">
           <span className="field-label">Budget range</span>
           <select
             name="budget"
@@ -194,7 +198,7 @@ export const ContactForm = () => {
           </select>
         </label>
 
-        <label className="flex flex-col">
+        <label className="flex min-w-0 flex-col">
           <span className="field-label">Timeline</span>
           <select
             name="timeline"
@@ -211,7 +215,7 @@ export const ContactForm = () => {
         </label>
       </div>
 
-      <label className="flex flex-col">
+      <label className="flex min-w-0 flex-col">
         <span className="field-label">
           Project brief <span aria-hidden className="text-burgundy">*</span>
         </span>
@@ -244,14 +248,14 @@ export const ContactForm = () => {
       </label>
 
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
-        <button type="submit" className="button-primary">
+        <button type="submit" className="button-primary w-full sm:w-auto sm:shrink-0">
           Prepare email draft
         </button>
         <p
           role="status"
           aria-live="polite"
           className={cn(
-            "text-sm",
+            "min-w-0 text-sm [overflow-wrap:anywhere]",
             status === "error" ? "text-burgundy" : "text-muted",
           )}
         >
@@ -261,11 +265,11 @@ export const ContactForm = () => {
         </p>
       </div>
 
-      <p className="text-xs leading-relaxed text-muted">
+      <p className="min-w-0 text-xs leading-relaxed text-muted [overflow-wrap:anywhere]">
         By submitting, you agree to be contacted by email. This form opens your
         mail client with a draft addressed to{" "}
         <a
-          className="font-semibold text-maroon underline underline-offset-4"
+          className="font-semibold text-maroon underline underline-offset-4 [overflow-wrap:anywhere]"
           href={`mailto:${STUDIO.email}`}
         >
           {STUDIO.email}

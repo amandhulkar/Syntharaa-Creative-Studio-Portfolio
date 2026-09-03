@@ -24,9 +24,12 @@ html {
   background: rgb(var(--color-paper));
 }
 
+html,
 body {
-  min-width: 320px;
-  overflow-x: hidden;
+  width: 100%;
+}
+
+body {
   background: rgb(var(--color-paper));
   color: rgb(var(--color-ink));
   font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
@@ -68,33 +71,34 @@ section[id] {
 
 @layer components {
   .container-shell {
-    @apply mx-auto w-full max-w-[1380px] px-5 sm:px-8 lg:px-12 xl:px-16;
+    @apply mx-auto w-full max-w-[1380px] px-4 sm:px-8 lg:px-12 xl:px-16;
   }
 
   .section-pad {
-    @apply py-24 sm:py-28 lg:py-36;
+    @apply py-16 sm:py-28 lg:py-36;
   }
 
   .eyebrow {
-    @apply inline-flex items-center gap-3 text-[0.68rem] font-bold uppercase tracking-[0.24em] sm:text-xs;
+    @apply inline-flex min-w-0 items-center gap-2 text-[0.66rem] font-bold uppercase tracking-[0.18em] sm:gap-3 sm:text-xs sm:tracking-[0.24em];
   }
 
   .eyebrow::before {
     content: "";
-    width: 2.5rem;
+    width: 1.75rem;
     height: 1px;
+    flex-shrink: 0;
     background: currentColor;
     opacity: 0.72;
   }
 
   .display-title {
-    @apply font-display text-5xl font-medium leading-[0.93] tracking-[-0.035em] sm:text-6xl lg:text-7xl xl:text-[5.5rem];
+    @apply font-display text-[2.5rem] font-medium leading-[0.98] tracking-[-0.035em] sm:text-6xl sm:leading-[0.93] lg:text-7xl xl:text-[5.5rem];
   }
 
   .button-primary,
   .button-secondary,
   .button-light {
-    @apply inline-flex min-h-12 items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-bold transition duration-300;
+    @apply inline-flex min-h-12 items-center justify-center gap-2 rounded-full px-5 py-3 text-center text-sm font-bold transition duration-300 sm:px-6;
   }
 
   .button-primary {
@@ -145,7 +149,7 @@ section[id] {
   }
 
   .form-field {
-    @apply min-h-12 w-full rounded-none border-0 border-b border-wine/25 bg-transparent px-0 py-3 text-base text-wine placeholder:text-wine/35 transition;
+    @apply min-h-12 w-full max-w-full rounded-none border-0 border-b border-wine/25 bg-transparent px-0 py-3 text-base text-wine placeholder:text-wine/35 transition;
   }
 
   .form-field:hover {

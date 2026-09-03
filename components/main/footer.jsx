@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-import { STUDIO, SOCIAL_LINKS } from "@/constants";
+import { STUDIO } from "@/constants";
 
 export const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -34,7 +34,7 @@ export const Footer = () => {
 
         <nav
           aria-label="Footer sections"
-          className="grid grid-cols-2 gap-8 sm:grid-cols-4"
+          className="grid min-w-0 grid-cols-1 gap-8 sm:grid-cols-2"
         >
           {[
             {
@@ -54,16 +54,16 @@ export const Footer = () => {
               ],
             },
           ].map((column) => (
-            <div key={column.label} className="flex flex-col gap-4">
+            <div key={column.label} className="flex min-w-0 flex-col gap-4">
               <h3 className="text-xs font-bold uppercase tracking-[0.2em] text-maroon">
                 {column.label}
               </h3>
               <ul className="flex flex-col gap-3">
                 {column.links.map((link) => (
-                  <li key={link.label}>
+                  <li key={link.label} className="min-w-0">
                     <Link
                       href={link.href}
-                      className="text-base text-muted transition hover:text-maroon"
+                      className="text-base text-muted transition [overflow-wrap:anywhere] hover:text-maroon"
                     >
                       {link.label}
                     </Link>
@@ -75,10 +75,15 @@ export const Footer = () => {
         </nav>
 
         <div className="flex flex-col items-start justify-between gap-6 border-t border-wine/10 pt-8 sm:flex-row sm:items-center">
-          <div className="flex flex-wrap items-center gap-3 text-sm text-muted">
-            <span>&copy; {currentYear} {STUDIO.legalName}. All rights reserved.</span>
-            <span aria-hidden className="h-1 w-1 rounded-full bg-wine/30" />
-            <span>
+          <div className="flex min-w-0 flex-col items-start gap-2 text-sm text-muted sm:flex-row sm:flex-wrap sm:items-center sm:gap-3">
+            <span className="[overflow-wrap:anywhere]">
+              &copy; {currentYear} {STUDIO.legalName}. All rights reserved.
+            </span>
+            <span
+              aria-hidden
+              className="hidden h-1 w-1 shrink-0 rounded-full bg-wine/30 sm:block"
+            />
+            <span className="[overflow-wrap:anywhere]">
               Built with Next.js, Tailwind CSS, and Framer Motion.
             </span>
           </div>

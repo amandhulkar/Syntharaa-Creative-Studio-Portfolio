@@ -35,6 +35,9 @@ export const Navbar = () => {
     }
 
     shouldRestoreFocusRef.current = true;
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
     const focusFrame = window.requestAnimationFrame(() => {
       firstMenuLinkRef.current?.focus();
     });
@@ -45,10 +48,21 @@ export const Navbar = () => {
       }
     };
 
+    const desktopQuery = window.matchMedia("(min-width: 768px)");
+    const onDesktopChange = (event) => {
+      if (event.matches) {
+        shouldRestoreFocusRef.current = false;
+        setIsMobileMenuOpen(false);
+      }
+    };
+
     window.addEventListener("keydown", onKeyDown);
+    desktopQuery.addEventListener("change", onDesktopChange);
     return () => {
+      document.body.style.overflow = previousOverflow;
       window.cancelAnimationFrame(focusFrame);
       window.removeEventListener("keydown", onKeyDown);
+      desktopQuery.removeEventListener("change", onDesktopChange);
     };
   }, [isMobileMenuOpen]);
 
@@ -71,6 +85,7 @@ export const Navbar = () => {
         <Link
           href="#main-content"
           aria-label={`${STUDIO.name} home`}
+          onClick={closeMenu}
           className="group inline-flex items-center gap-2"
         >
           <span
@@ -167,12 +182,12 @@ export const Navbar = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={reducedMotion}
-            className="border-t border-wine/15 bg-cream/95 backdrop-blur-md"
+            className="max-h-[calc(100svh-4rem)] overflow-y-auto overscroll-contain border-t border-wine/15 bg-cream/95 backdrop-blur-md sm:max-h-[calc(100svh-5rem)]"
           >
             <motion.nav
               aria-label="Mobile primary"
               variants={stagger}
-              className="container-shell flex flex-col items-stretch gap-1 py-6"
+              className="container-shell flex flex-col items-stretch gap-1 pb-[max(1.5rem,env(safe-area-inset-bottom))] pt-4 sm:pt-6"
             >
               {menuLinks.map((link, index) => (
                 <motion.div

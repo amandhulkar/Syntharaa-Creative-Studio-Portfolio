@@ -18,37 +18,37 @@ export const ProjectCard = ({
   return (
     <motion.article
       variants={revealUp}
-      className="group relative flex flex-col overflow-hidden rounded-2xl border border-wine/10 bg-paper shadow-card transition duration-300 hover:-translate-y-1 hover:shadow-glow"
+      className="group relative flex min-w-0 flex-col overflow-hidden rounded-2xl border border-wine/10 bg-paper shadow-card transition duration-300 hover:-translate-y-1 hover:shadow-glow"
     >
       <div className="relative aspect-[4/3] overflow-hidden">
         <Image
           src={image}
           alt={imageAlt}
           fill
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          sizes="(max-width: 767px) 100vw, 50vw"
           priority={false}
           loading="lazy"
           className="object-cover transition duration-500 group-hover:scale-105"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-wine/60 via-wine/10 to-transparent" />
-        <div className="absolute left-5 top-5">
-          <span className="inline-flex items-center gap-2 rounded-full border border-cream/25 bg-wine/40 px-3 py-1 text-[0.68rem] font-bold uppercase tracking-[0.18em] text-cream backdrop-blur">
+        <div className="absolute left-3 right-3 top-3 sm:left-5 sm:right-auto sm:top-5 sm:max-w-[70%]">
+          <span className="inline-flex max-w-full items-center rounded-full border border-cream/25 bg-wine/50 px-2.5 py-1 text-[0.62rem] font-bold uppercase tracking-[0.12em] text-cream backdrop-blur sm:px-3 sm:text-[0.68rem] sm:tracking-[0.18em]">
             {category}
           </span>
         </div>
-        <div className="absolute right-5 top-5">
-          <span className="font-display text-2xl font-medium text-cream/80">
+        <div className="absolute bottom-3 right-3 sm:bottom-5 sm:right-5">
+          <span className="font-display text-xl font-medium text-cream/90 sm:text-2xl">
             {outcome.split(" ")[0]}
           </span>
         </div>
       </div>
 
-      <div className="flex flex-1 flex-col gap-4 p-7">
-        <div className="flex items-center justify-between gap-3">
-          <h3 className="font-display text-2xl font-medium text-ink">
+      <div className="flex min-w-0 flex-1 flex-col gap-4 p-5 sm:p-7">
+        <div className="flex min-w-0 flex-col items-start gap-2 sm:flex-row sm:items-center sm:justify-between sm:gap-3">
+          <h3 className="min-w-0 font-display text-2xl font-medium text-ink">
             {title}
           </h3>
-          <span className="shrink-0 text-xs font-bold uppercase tracking-[0.18em] text-gold">
+          <span className="text-xs font-bold uppercase tracking-[0.14em] text-gold sm:shrink-0 sm:tracking-[0.18em]">
             {project}
           </span>
         </div>
@@ -63,13 +63,13 @@ export const ProjectCard = ({
             {solution}
           </p>
         </div>
-        <div className="flex items-center justify-between gap-3 border-t border-wine/10 pt-4">
-          <span className="text-sm font-medium text-muted">
+        <div className="flex min-w-0 flex-col items-stretch gap-4 border-t border-wine/10 pt-4 sm:flex-row sm:items-center sm:justify-between sm:gap-3">
+          <span className="min-w-0 text-sm font-medium text-muted">
             Outcome: <span className="text-ink">{outcome}</span>
           </span>
           <a
             href="#contact"
-            className="button-light inline-flex items-center gap-2 text-xs"
+            className="button-light w-full text-xs sm:w-auto sm:shrink-0"
           >
             Start a similar project
             <span aria-hidden>→</span>

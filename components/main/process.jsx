@@ -10,7 +10,7 @@ export const Process = () => {
     <section
       id="process"
       aria-labelledby="process-heading"
-      className="relative overflow-hidden bg-wine py-24 sm:py-28 lg:py-36"
+      className="section-pad relative overflow-hidden bg-wine"
     >
       <div className="pointer-events-none absolute inset-0">
         <div className="absolute inset-0 bg-[radial-gradient(50%_45%_at_85%_10%,rgba(199,164,96,0.14),transparent_70%)]" />
@@ -18,15 +18,15 @@ export const Process = () => {
       </div>
 
       <div className="container-shell relative">
-        <div className="flex flex-col gap-16">
+        <div className="flex flex-col gap-10 sm:gap-16">
           <div className="max-w-2xl">
             <span className="eyebrow text-cream/70">How we work</span>
             <h2
               id="process-heading"
               className="display-title mt-6 text-cream"
             >
-              Four phases,
-              <br />
+              Four phases,{" "}
+              <br className="hidden sm:block" />
               <span className="text-gold">one clear path.</span>
             </h2>
             <p className="mt-5 max-w-xl text-base leading-relaxed text-cream/65">
@@ -46,15 +46,15 @@ export const Process = () => {
               <motion.li
                 key={step.title}
                 variants={index % 2 === 0 ? revealLeft : revealRight}
-                className="group relative overflow-hidden rounded-2xl border border-cream/15 bg-cream/5 p-8 transition duration-300 hover:border-gold/40 hover:bg-cream/10"
+                className="group relative min-w-0 overflow-hidden rounded-2xl border border-cream/15 bg-cream/5 p-5 transition duration-300 hover:border-gold/40 hover:bg-cream/10 sm:p-8"
               >
-                <div className="flex items-start justify-between gap-6">
-                  <div className="inline-flex h-12 w-12 items-center justify-center rounded-xl border border-gold/40 bg-wine text-gold">
+                <div className="flex min-w-0 items-start justify-between gap-4 sm:gap-6">
+                  <div className="inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-gold/40 bg-wine text-gold">
                     <span className="font-display text-lg font-semibold">
                       {step.number}
                     </span>
                   </div>
-                  <span className="text-xs font-bold uppercase tracking-[0.2em] text-cream/55">
+                  <span className="min-w-0 text-right text-[0.68rem] font-bold uppercase tracking-[0.14em] text-cream/55 sm:text-xs sm:tracking-[0.2em]">
                     {step.detail}
                   </span>
                 </div>

@@ -13,7 +13,7 @@ export const Skills = () => {
       aria-labelledby="services-heading"
       className="section-pad container-shell"
     >
-      <div className="flex flex-col gap-16">
+      <div className="flex flex-col gap-10 sm:gap-16">
         <div className="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
           <div className="max-w-2xl">
             <span className="eyebrow text-maroon">What we do</span>
@@ -21,8 +21,8 @@ export const Skills = () => {
               id="services-heading"
               className="display-title mt-6 text-ink"
             >
-              Six capabilities,
-              <br />
+              Six capabilities,{" "}
+              <br className="hidden sm:block" />
               <span className="text-gold">one studio.</span>
             </h2>
           </div>
@@ -43,10 +43,10 @@ export const Skills = () => {
             <motion.article
               key={service.title}
               variants={revealUp}
-              className="group relative overflow-hidden rounded-2xl border border-wine/10 bg-paper p-8 shadow-card transition duration-300 hover:-translate-y-1 hover:border-gold/40 hover:shadow-glow"
+              className="group relative min-w-0 overflow-hidden rounded-2xl border border-wine/10 bg-paper p-5 shadow-card transition duration-300 hover:-translate-y-1 hover:border-gold/40 hover:shadow-glow sm:p-8"
             >
-              <div className="flex items-start justify-between gap-4">
-                <span className="inline-flex h-12 w-12 items-center justify-center rounded-xl border border-wine/15 bg-wine text-cream">
+              <div className="flex min-w-0 items-start justify-between gap-4">
+                <span className="inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-wine/15 bg-wine text-cream">
                   <ServiceIcon
                     name={service.icon}
                     className="h-6 w-6"
