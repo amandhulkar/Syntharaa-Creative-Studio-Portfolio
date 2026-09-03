@@ -1,0 +1,177 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-ink: 28 8 14;
+  --color-wine: 43 9 19;
+  --color-maroon: 91 14 37;
+  --color-burgundy: 126 31 56;
+  --color-gold: 147 105 37;
+  --color-cream: 244 235 220;
+  --color-paper: 251 247 240;
+  --color-muted: 118 94 94;
+  --focus-ring: #5b0e25;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5.5rem;
+  background: rgb(var(--color-paper));
+}
+
+body {
+  min-width: 320px;
+  overflow-x: hidden;
+  background: rgb(var(--color-paper));
+  color: rgb(var(--color-ink));
+  font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: rgb(var(--color-gold) / 0.55);
+  color: rgb(var(--color-wine));
+}
+
+:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 4px;
+}
+
+section[id] {
+  scroll-margin-top: 5.5rem;
+}
+
+.skip-link {
+  position: fixed;
+  left: 1rem;
+  top: 1rem;
+  z-index: 100;
+  transform: translateY(-200%);
+  border-radius: 999px;
+  background: rgb(var(--color-cream));
+  color: rgb(var(--color-wine));
+  padding: 0.75rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 700;
+  transition: transform 180ms ease;
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+}
+
+@layer components {
+  .container-shell {
+    @apply mx-auto w-full max-w-[1380px] px-5 sm:px-8 lg:px-12 xl:px-16;
+  }
+
+  .section-pad {
+    @apply py-24 sm:py-28 lg:py-36;
+  }
+
+  .eyebrow {
+    @apply inline-flex items-center gap-3 text-[0.68rem] font-bold uppercase tracking-[0.24em] sm:text-xs;
+  }
+
+  .eyebrow::before {
+    content: "";
+    width: 2.5rem;
+    height: 1px;
+    background: currentColor;
+    opacity: 0.72;
+  }
+
+  .display-title {
+    @apply font-display text-5xl font-medium leading-[0.93] tracking-[-0.035em] sm:text-6xl lg:text-7xl xl:text-[5.5rem];
+  }
+
+  .button-primary,
+  .button-secondary,
+  .button-light {
+    @apply inline-flex min-h-12 items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-bold transition duration-300;
+  }
+
+  .button-primary {
+    @apply bg-gold text-wine shadow-[inset_0_0_0_1px_rgba(255,255,255,0.2)];
+  }
+
+  .button-primary:hover {
+    @apply -translate-y-0.5 bg-[#d3b471] shadow-[0_14px_35px_rgba(10,2,5,0.22)];
+  }
+
+  .button-secondary {
+    @apply border border-cream/30 text-cream;
+  }
+
+  .button-secondary:hover {
+    @apply -translate-y-0.5 border-gold/80 bg-cream/5 text-gold;
+  }
+
+  .button-light {
+    @apply border border-wine/20 text-wine;
+  }
+
+  .button-light:hover {
+    @apply -translate-y-0.5 border-maroon bg-maroon text-cream;
+  }
+
+  .warm-grain {
+    position: relative;
+    isolation: isolate;
+  }
+
+  .warm-grain::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    opacity: 0.32;
+    background-image:
+      radial-gradient(circle at 14% 18%, rgba(255, 255, 255, 0.11) 0 0.7px, transparent 0.8px),
+      radial-gradient(circle at 78% 62%, rgba(199, 164, 96, 0.10) 0 0.7px, transparent 0.8px);
+    background-size: 9px 9px, 13px 13px;
+    mix-blend-mode: soft-light;
+  }
+
+  .field-label {
+    @apply mb-2 block text-[0.7rem] font-bold uppercase tracking-[0.16em] text-wine/75;
+  }
+
+  .form-field {
+    @apply min-h-12 w-full rounded-none border-0 border-b border-wine/25 bg-transparent px-0 py-3 text-base text-wine placeholder:text-wine/35 transition;
+  }
+
+  .form-field:hover {
+    @apply border-wine/50;
+  }
+
+  .form-field:focus {
+    @apply border-maroon outline-none ring-0;
+  }
+
+  .form-field[aria-invalid="true"] {
+    @apply border-burgundy;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}

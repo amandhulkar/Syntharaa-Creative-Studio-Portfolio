@@ -1,0 +1,47 @@
+{
+  "name": "syntharaa-website",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev --webpack",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint ."
+  },
+  "author": {
+    "name": "Syntharaa Creative Studio"
+  },
+  "description": "Syntharaa — an independent creative studio shaping memorable brands, digital products, websites, campaigns, and motion experiences.",
+  "keywords": [
+    "creative studio",
+    "brand identity",
+    "ui-ux",
+    "web design",
+    "graphic design",
+    "motion graphics",
+    "nextjs",
+    "tailwindcss",
+    "framer-motion"
+  ],
+  "license": "MIT",
+  "homepage": "https://syntharaa.studio",
+  "bugs": {
+    "url": "https://syntharaa.studio/contact"
+  },
+  "dependencies": {
+    "clsx": "^2.1.1",
+    "framer-motion": "^13.0.0",
+    "next": "16.3.4",
+    "react": "19.2.8",
+    "react-dom": "19.2.8",
+    "react-icons": "^5.7.0",
+    "tailwind-merge": "^3.6.0"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.5.4",
+    "eslint": "^9.29.0",
+    "eslint-config-next": "16.3.4",
+    "postcss": "^8",
+    "tailwindcss": "^3.3.0"
+  }
+}
