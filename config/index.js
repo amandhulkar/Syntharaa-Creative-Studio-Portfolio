@@ -1,6 +1,6 @@
-const title = "Syntharaa — Independent Creative Studio";
+const title = "Syntharaa — Brand Systems & Digital Experiences";
 const description =
-  "Syntharaa is an independent creative studio shaping memorable brands, digital products, websites, campaigns, and motion experiences.";
+  "Syntharaa is an independent creative studio building bold brand systems, digital products, websites, campaigns, and motion for ambitious teams.";
 
 export const siteConfig = {
   title: {
@@ -15,17 +15,14 @@ export const siteConfig = {
   category: "design",
   keywords: [
     "creative studio",
-    "brand identity",
+    "brand systems",
+    "digital product design",
     "UI UX design",
     "web design",
-    "graphic design",
-    "motion graphics",
+    "motion design",
     "digital strategy",
   ],
-  robots: {
-    index: true,
-    follow: true,
-  },
+  robots: { index: true, follow: true },
   openGraph: {
     type: "website",
     locale: "en_US",
@@ -33,11 +30,7 @@ export const siteConfig = {
     title,
     description,
   },
-  twitter: {
-    card: "summary",
-    title,
-    description,
-  },
+  twitter: { card: "summary", title, description },
   icons: {
     icon: "/icon.svg",
     shortcut: "/icon.svg",

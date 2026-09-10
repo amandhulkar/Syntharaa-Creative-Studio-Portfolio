@@ -3,15 +3,14 @@
 @tailwind utilities;
 
 :root {
-  --color-ink: 28 8 14;
-  --color-wine: 43 9 19;
-  --color-maroon: 91 14 37;
-  --color-burgundy: 126 31 56;
-  --color-gold: 147 105 37;
-  --color-cream: 244 235 220;
-  --color-paper: 251 247 240;
-  --color-muted: 118 94 94;
-  --focus-ring: #5b0e25;
+  --color-ink: 21 20 27;
+  --color-canvas: 239 237 230;
+  --color-surface: 250 249 245;
+  --color-muted: 98 96 103;
+  --color-line: 207 203 194;
+  --color-accent: 105 76 255;
+  --color-signal: 220 244 92;
+  --focus-ring: #694cff;
 }
 
 * {
@@ -20,8 +19,8 @@
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 5.5rem;
-  background: rgb(var(--color-paper));
+  scroll-padding-top: 6rem;
+  background: rgb(var(--color-canvas));
 }
 
 html,
@@ -30,15 +29,19 @@ body {
 }
 
 body {
-  background: rgb(var(--color-paper));
+  min-width: 320px;
+  overflow-x: hidden;
+  background:
+    radial-gradient(circle at 8% 2%, rgb(255 255 255 / 0.75), transparent 34rem),
+    rgb(var(--color-canvas));
   color: rgb(var(--color-ink));
   font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
   text-rendering: optimizeLegibility;
 }
 
 ::selection {
-  background: rgb(var(--color-gold) / 0.55);
-  color: rgb(var(--color-wine));
+  background: rgb(var(--color-signal));
+  color: rgb(var(--color-ink));
 }
 
 :focus-visible {
@@ -47,7 +50,7 @@ body {
 }
 
 section[id] {
-  scroll-margin-top: 5.5rem;
+  scroll-margin-top: 6rem;
 }
 
 .skip-link {
@@ -56,12 +59,12 @@ section[id] {
   top: 1rem;
   z-index: 100;
   transform: translateY(-200%);
-  border-radius: 999px;
-  background: rgb(var(--color-cream));
-  color: rgb(var(--color-wine));
+  border: 1px solid rgb(var(--color-ink));
+  background: rgb(var(--color-signal));
+  color: rgb(var(--color-ink));
   padding: 0.75rem 1rem;
   font-size: 0.875rem;
-  font-weight: 700;
+  font-weight: 800;
   transition: transform 180ms ease;
 }
 
@@ -71,97 +74,193 @@ section[id] {
 
 @layer components {
   .container-shell {
-    @apply mx-auto w-full max-w-[1380px] px-4 sm:px-8 lg:px-12 xl:px-16;
+    @apply mx-auto w-full max-w-[1480px] px-4 sm:px-7 lg:px-10 xl:px-14;
+  }
+
+  .workspace-shell {
+    @apply mx-auto w-full max-w-[1480px] overflow-hidden border-x border-line bg-canvas/70;
   }
 
   .section-pad {
-    @apply py-16 sm:py-28 lg:py-36;
+    @apply px-4 py-16 sm:px-7 sm:py-20 lg:px-10 lg:py-28 xl:px-14;
+  }
+
+  .hero-section {
+    @apply pb-20 pt-10 sm:pb-24 sm:pt-14 lg:pb-28 lg:pt-16;
+  }
+
+  .section-intro {
+    @apply grid min-w-0 gap-7 lg:grid-cols-[1fr_0.72fr] lg:items-end lg:gap-12;
+  }
+
+  .panel {
+    @apply min-w-0 overflow-hidden border border-line bg-surface;
+  }
+
+  .panel-dark {
+    @apply border-white/10 bg-ink text-white;
+  }
+
+  .panel-bar {
+    @apply flex min-h-11 min-w-0 items-center justify-between gap-4 border-b border-line px-4 py-2.5 sm:px-5;
+  }
+
+  .panel-label,
+  .micro-label {
+    @apply min-w-0 font-display text-[0.64rem] font-bold uppercase tracking-[0.14em] text-muted;
+  }
+
+  .panel-index {
+    @apply font-display text-[0.62rem] font-semibold tabular-nums tracking-[0.12em] text-muted;
+  }
+
+  .status-dot {
+    @apply inline-block h-2 w-2 shrink-0 rounded-full bg-signal ring-4 ring-signal/15;
+  }
+
+  .section-rule {
+    @apply border-t border-line;
   }
 
   .eyebrow {
-    @apply inline-flex min-w-0 items-center gap-2 text-[0.66rem] font-bold uppercase tracking-[0.18em] sm:gap-3 sm:text-xs sm:tracking-[0.24em];
+    @apply inline-flex min-w-0 items-center gap-2 font-display text-[0.66rem] font-bold uppercase tracking-[0.15em];
   }
 
   .eyebrow::before {
     content: "";
-    width: 1.75rem;
+    width: 1.6rem;
     height: 1px;
     flex-shrink: 0;
     background: currentColor;
-    opacity: 0.72;
   }
 
   .display-title {
-    @apply font-display text-[2.5rem] font-medium leading-[0.98] tracking-[-0.035em] sm:text-6xl sm:leading-[0.93] lg:text-7xl xl:text-[5.5rem];
+    font-size: clamp(2.75rem, 5.35vw, 6rem);
+    @apply font-display font-medium leading-[0.91] tracking-[-0.064em];
+  }
+
+  .section-title {
+    font-size: clamp(2.25rem, 4.2vw, 4.7rem);
+    @apply font-display font-medium leading-[0.95] tracking-[-0.058em];
   }
 
   .button-primary,
   .button-secondary,
   .button-light {
-    @apply inline-flex min-h-12 items-center justify-center gap-2 rounded-full px-5 py-3 text-center text-sm font-bold transition duration-300 sm:px-6;
+    @apply inline-flex min-h-12 items-center justify-center gap-4 border px-5 py-3 text-center text-sm font-bold transition duration-300;
   }
 
   .button-primary {
-    @apply bg-gold text-wine shadow-[inset_0_0_0_1px_rgba(255,255,255,0.2)];
+    @apply border-accent bg-accent text-white shadow-[0_10px_30px_rgb(var(--color-accent)/0.18)];
   }
 
   .button-primary:hover {
-    @apply -translate-y-0.5 bg-[#d3b471] shadow-[0_14px_35px_rgba(10,2,5,0.22)];
+    @apply -translate-y-0.5 border-ink bg-ink;
   }
 
   .button-secondary {
-    @apply border border-cream/30 text-cream;
+    @apply border-white/25 bg-transparent text-white;
   }
 
   .button-secondary:hover {
-    @apply -translate-y-0.5 border-gold/80 bg-cream/5 text-gold;
+    @apply -translate-y-0.5 border-white bg-white text-ink;
   }
 
   .button-light {
-    @apply border border-wine/20 text-wine;
+    @apply border-ink/25 bg-transparent text-ink;
   }
 
   .button-light:hover {
-    @apply -translate-y-0.5 border-maroon bg-maroon text-cream;
-  }
-
-  .warm-grain {
-    position: relative;
-    isolation: isolate;
-  }
-
-  .warm-grain::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    z-index: -1;
-    pointer-events: none;
-    opacity: 0.32;
-    background-image:
-      radial-gradient(circle at 14% 18%, rgba(255, 255, 255, 0.11) 0 0.7px, transparent 0.8px),
-      radial-gradient(circle at 78% 62%, rgba(199, 164, 96, 0.10) 0 0.7px, transparent 0.8px);
-    background-size: 9px 9px, 13px 13px;
-    mix-blend-mode: soft-light;
+    @apply -translate-y-0.5 border-ink bg-ink text-white;
   }
 
   .field-label {
-    @apply mb-2 block text-[0.7rem] font-bold uppercase tracking-[0.16em] text-wine/75;
+    @apply mb-2 block font-display text-[0.64rem] font-bold uppercase tracking-[0.14em] text-ink/55;
   }
 
   .form-field {
-    @apply min-h-12 w-full max-w-full rounded-none border-0 border-b border-wine/25 bg-transparent px-0 py-3 text-base text-wine placeholder:text-wine/35 transition;
+    @apply min-h-12 w-full max-w-full border border-line bg-canvas/45 px-3.5 py-3 text-base text-ink placeholder:text-ink/30 transition;
   }
 
   .form-field:hover {
-    @apply border-wine/50;
+    @apply border-ink/35 bg-surface;
   }
 
   .form-field:focus {
-    @apply border-maroon outline-none ring-0;
+    @apply border-accent bg-surface outline-none ring-2 ring-accent/15;
   }
 
   .form-field[aria-invalid="true"] {
-    @apply border-burgundy;
+    @apply border-red-700 ring-1 ring-red-700/10;
+  }
+
+  .hero-media {
+    background:
+      radial-gradient(circle at 76% 16%, rgb(var(--color-signal) / 0.95), transparent 12rem),
+      linear-gradient(145deg, rgb(var(--color-accent)), #302061 65%, rgb(var(--color-ink)));
+  }
+
+  .project-card {
+    @apply min-w-0 border-t border-line pt-5;
+  }
+
+  .service-row {
+    transition: padding 320ms cubic-bezier(0.22, 1, 0.36, 1), background-color 320ms ease;
+  }
+
+  .service-row:hover {
+    @apply bg-surface;
+  }
+}
+
+.marquee-track {
+  width: max-content;
+  animation: marquee 38s linear infinite;
+}
+
+.marquee-shell:hover .marquee-track,
+.marquee-shell:focus-within .marquee-track {
+  animation-play-state: paused;
+}
+
+.status-pulse {
+  animation: status-pulse 2.8s ease-in-out infinite;
+}
+
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes status-pulse {
+  0%, 100% {
+    opacity: 0.55;
+    transform: scale(0.86);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@media (min-width: 1024px) and (pointer: fine) {
+  .service-row:hover {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
+@media (max-width: 639px) {
+  .workspace-shell {
+    border-left: 0;
+    border-right: 0;
+  }
+}
+
+@media (pointer: coarse) {
+  .pointer-motion {
+    transform: none !important;
   }
 }
 
@@ -177,5 +276,14 @@ section[id] {
     animation-iteration-count: 1 !important;
     scroll-behavior: auto !important;
     transition-duration: 0.01ms !important;
+  }
+
+  .marquee-track {
+    width: 100%;
+    animation: none;
+  }
+
+  .marquee-copy {
+    display: none;
   }
 }

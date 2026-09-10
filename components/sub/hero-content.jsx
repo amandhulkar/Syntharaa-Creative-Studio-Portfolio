@@ -2,67 +2,71 @@
 
 import { motion } from "framer-motion";
 
-import { STUDIO } from "@/constants";
-import { revealLeft, revealUp, stagger } from "@/lib/motion";
+import { STUDIO, STUDIO_COPY } from "@/constants";
+import { fadeUp, lineReveal, staggerFast, staggerSection } from "@/lib/motion";
 
-export const HeroContent = () => {
-  return (
-    <motion.div
-      initial="hidden"
-      animate="visible"
-      variants={stagger}
-      className="flex w-full min-w-0 flex-col gap-6 pb-12 pt-24 sm:gap-8 sm:pb-24 sm:pt-28"
-    >
-      <motion.div variants={revealUp}>
-        <span className="eyebrow text-cream/70">
-          {STUDIO.name} — Creative Studio
-        </span>
-      </motion.div>
+const RevealLine = ({ children, accent = false }) => (
+  <span className="block overflow-hidden pb-[0.09em]">
+    <motion.span variants={lineReveal} className={`block ${accent ? "text-accent" : ""}`}>
+      {children}
+    </motion.span>
+  </span>
+);
 
-      <motion.h1
-        id="hero-headline"
-        variants={revealLeft}
-        className="display-title text-cream"
-      >
-        Crafting digital experiences{" "}
-        <br className="hidden sm:block" />
-        <span className="text-gold">people remember.</span>
-      </motion.h1>
-
-      <motion.p
-        variants={revealLeft}
-        className="max-w-xl text-base leading-relaxed text-cream/70 sm:text-lg"
-      >
-        We help ambitious brands shape clear identities, thoughtful products,
-        and campaigns that feel as good as they look — from first impression
-        through launch and beyond.
-      </motion.p>
-
-      <motion.div
-        variants={revealUp}
-        className="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:gap-4"
-      >
-        <a href="#contact" className="button-primary w-full sm:w-auto">
-          Start a project
-        </a>
-        <a href="#work" className="button-secondary w-full sm:w-auto">
-          View selected work
-        </a>
-      </motion.div>
-
-      <motion.div
-        variants={stagger}
-        className="mt-2 flex min-w-0 flex-col gap-3 text-[0.68rem] font-medium uppercase tracking-[0.14em] text-cream/55 sm:mt-4 sm:flex-row sm:flex-wrap sm:gap-10 sm:text-xs sm:tracking-[0.2em]"
-      >
-        <span className="flex min-w-0 items-center gap-2">
-          <span className="h-px w-5 shrink-0 bg-gold/60 sm:w-6" />
-          <span>{STUDIO.availability}</span>
-        </span>
-        <span className="flex min-w-0 items-center gap-2">
-          <span className="h-px w-5 shrink-0 bg-gold/60 sm:w-6" />
-          <span>{STUDIO.responseTime}</span>
-        </span>
-      </motion.div>
+export const HeroContent = () => (
+  <motion.div
+    initial="hidden"
+    animate="visible"
+    variants={staggerSection}
+    className="flex h-full min-w-0 flex-col"
+  >
+    <motion.div variants={fadeUp} className="flex flex-wrap items-center gap-x-5 gap-y-3">
+      <span className="eyebrow text-accent">{STUDIO_COPY.eyebrow}</span>
+      <span className="text-xs font-semibold text-muted">Strategy · Design · Motion</span>
     </motion.div>
-  );
-};
+
+    <motion.h1
+      id="hero-headline"
+      variants={staggerFast}
+      className="display-title mt-8 max-w-[12ch] sm:mt-12"
+    >
+      {STUDIO_COPY.headline.map((line, index) => (
+        <RevealLine key={line} accent={index === STUDIO_COPY.headline.length - 1}>
+          {line}
+        </RevealLine>
+      ))}
+    </motion.h1>
+
+    <motion.p
+      variants={fadeUp}
+      className="mt-7 max-w-2xl text-base leading-relaxed text-muted sm:text-lg"
+    >
+      {STUDIO_COPY.introduction}
+    </motion.p>
+
+    <motion.div variants={fadeUp} className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+      <a href="#work" className="button-primary w-full sm:w-auto">
+        Explore selected work <span aria-hidden>↘</span>
+      </a>
+      <a href="#contact" className="button-light w-full sm:w-auto">
+        Start a conversation <span aria-hidden>↗</span>
+      </a>
+    </motion.div>
+
+    <motion.dl
+      variants={staggerFast}
+      className="mt-10 grid gap-5 border-t border-line pt-6 sm:mt-auto sm:grid-cols-3"
+    >
+      {[
+        ["Availability", STUDIO.availability],
+        ["Based", STUDIO.location],
+        ["Response", STUDIO.responseTime],
+      ].map(([label, value]) => (
+        <motion.div key={label} variants={fadeUp} className="min-w-0">
+          <dt className="micro-label text-ink/40">{label}</dt>
+          <dd className="mt-2 text-sm font-semibold leading-snug text-ink/75">{value}</dd>
+        </motion.div>
+      ))}
+    </motion.dl>
+  </motion.div>
+);

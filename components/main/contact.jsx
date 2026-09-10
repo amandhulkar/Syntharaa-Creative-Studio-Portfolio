@@ -2,80 +2,38 @@
 
 import { motion } from "framer-motion";
 
-import { STUDIO } from "@/constants";
 import { ContactForm } from "@/components/sub/contact-form";
-import { revealRight, stagger } from "@/lib/motion";
+import { STUDIO } from "@/constants";
+import { fadeUp, staggerSection, viewportOnce } from "@/lib/motion";
 
-export const Contact = () => {
-  return (
-    <section
-      id="contact"
-      aria-labelledby="contact-heading"
-      className="section-pad container-shell"
-    >
-      <div className="grid gap-10 sm:gap-16 lg:grid-cols-2 lg:items-start">
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.25 }}
-          variants={stagger}
-          className="flex min-w-0 flex-col gap-6"
-        >
-          <span className="eyebrow text-maroon">Start a project</span>
-          <h2
-            id="contact-heading"
-            className="display-title text-ink"
-          >
-            Let us know{" "}
-            <br className="hidden sm:block" />
-            <span className="text-gold">what you are building.</span>
-          </h2>
-          <p className="max-w-md text-base leading-relaxed text-muted">
-            Tell us about the work you need. We will review your brief and
-            reply with next steps and a realistic estimate within two business
-            days.
-          </p>
+export const Contact = () => (
+  <section id="contact" aria-labelledby="contact-heading" className="section-pad border-t border-line bg-accent text-white">
+    <motion.div initial="hidden" whileInView="visible" viewport={viewportOnce} variants={staggerSection} className="grid gap-10 lg:grid-cols-[0.72fr_1.28fr] lg:gap-14">
+      <motion.div variants={fadeUp} className="flex min-w-0 flex-col">
+        <span className="eyebrow text-white/65">Start a project</span>
+        <h2 id="contact-heading" className="section-title mt-5 max-w-[8ch]">Let’s make the next idea matter.</h2>
+        <p className="mt-6 max-w-md text-base leading-relaxed text-white/72 sm:text-lg">Share the challenge, context, and ambition. You will receive clear next steps and a realistic response within two business days.</p>
 
-          <div className="mt-2 flex min-w-0 flex-col gap-4 border-l-2 border-gold/60 pl-4 sm:pl-5">
-            <div>
-              <p className="text-xs font-bold uppercase tracking-[0.18em] text-maroon">
-                Direct email
-              </p>
-              <a
-                href={`mailto:${STUDIO.email}`}
-                className="text-base font-medium text-ink transition [overflow-wrap:anywhere] hover:text-maroon"
-              >
-                {STUDIO.email}
-              </a>
-            </div>
-            <div>
-              <p className="text-xs font-bold uppercase tracking-[0.18em] text-maroon">
-                Location
-              </p>
-              <p className="text-base text-muted">{STUDIO.location}</p>
-            </div>
-            <div>
-              <p className="text-xs font-bold uppercase tracking-[0.18em] text-maroon">
-                Availability
-              </p>
-              <p className="text-base text-muted">{STUDIO.availability}</p>
-            </div>
+        <div className="mt-9 border-t border-white/25 pt-6 lg:mt-auto">
+          <p className="micro-label text-white/45">Prefer direct email?</p>
+          <a href={`mailto:${STUDIO.email}`} className="mt-3 block font-display text-xl font-medium tracking-[-0.035em] text-white [overflow-wrap:anywhere] hover:underline sm:text-2xl">{STUDIO.email}</a>
+          <div className="mt-6 flex flex-wrap gap-x-5 gap-y-2 text-sm text-white/65">
+            <span>{STUDIO.location}</span>
+            <span>{STUDIO.availability}</span>
           </div>
-        </motion.div>
+        </div>
+      </motion.div>
 
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.25 }}
-          variants={revealRight}
-          className="relative min-w-0"
-        >
-          <div className="absolute -inset-px rounded-3xl border border-wine/10 bg-gradient-to-br from-cream to-wine/5" />
-          <div className="relative rounded-3xl bg-paper p-5 shadow-card sm:p-8 lg:p-10">
-            <ContactForm />
+      <motion.div variants={fadeUp} className="min-w-0 bg-surface p-5 text-ink shadow-[0_30px_90px_rgb(23_16_70/0.22)] sm:p-8 lg:p-10">
+        <div className="mb-7 flex flex-col gap-3 border-b border-line pb-5 sm:flex-row sm:items-end sm:justify-between">
+          <div>
+            <p className="micro-label text-accent">Project brief</p>
+            <p className="mt-2 font-display text-2xl font-medium tracking-[-0.04em]">Tell us what you’re building.</p>
           </div>
-        </motion.div>
-      </div>
-    </section>
-  );
-};
+          <span className="text-xs font-semibold text-muted">Draft opens in your email app</span>
+        </div>
+        <ContactForm />
+      </motion.div>
+    </motion.div>
+  </section>
+);

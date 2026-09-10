@@ -7,12 +7,35 @@ export const STUDIO = {
   responseTime: "Replies within 2 business days",
 };
 
+// Central studio copy: replace these lines when your final authored concept is ready.
+export const STUDIO_COPY = {
+  eyebrow: "Independent creative studio",
+  headline: ["Brands and digital", "experiences built", "to be remembered."],
+  introduction:
+    "Syntharaa helps ambitious ideas become clear, distinctive identities and digital experiences—connecting strategy, design, and motion from first thought to final launch.",
+  workIntroduction:
+    "A selection of identity, product, web, and campaign systems. Current entries are self-initiated concepts and can be replaced with your real projects from one data file.",
+  servicesIntroduction:
+    "Bring us a new idea, an identity that no longer fits, or a digital experience that needs clarity. We shape the strategy and the expression together.",
+  about:
+    "Syntharaa is an independent creative studio for ambitious teams that want their identity and digital experience to feel unmistakably theirs. Strategy, design, and delivery stay connected from the first question to the final handoff.",
+};
+
 export const NAV_LINKS = [
-  { label: "Services", href: "#services" },
   { label: "Work", href: "#work" },
+  { label: "Services", href: "#services" },
   { label: "Process", href: "#process" },
-  { label: "About", href: "#about" },
+  { label: "Studio", href: "#studio" },
   { label: "Contact", href: "#contact" },
+];
+
+export const CAPABILITY_TICKER = [
+  "Brand systems",
+  "Digital products",
+  "Web experiences",
+  "Campaigns",
+  "Motion direction",
+  "Digital strategy",
 ];
 
 export const SERVICES = [
@@ -20,49 +43,43 @@ export const SERVICES = [
     number: "01",
     title: "UI/UX Design",
     description:
-      "Useful, intuitive product experiences shaped around real people and clear business goals.",
+      "For products that need to feel intuitive, focused, and unmistakably considered at every interaction.",
     capabilities: ["User journeys", "Prototypes", "Design systems"],
-    icon: "cursor",
   },
   {
     number: "02",
     title: "Branding & Identity",
     description:
-      "Distinctive identity systems that turn your point of view into a brand people can recognize.",
+      "For new ventures and evolving brands ready for a sharper position and a visual language they can own.",
     capabilities: ["Brand strategy", "Visual identity", "Guidelines"],
-    icon: "sparkles",
   },
   {
     number: "03",
     title: "Web Design",
     description:
-      "Editorial, responsive websites that make your story clear and every interaction feel considered.",
+      "For teams that need a compelling digital home with clear storytelling and a purposeful route to action.",
     capabilities: ["Information design", "Responsive UI", "Creative direction"],
-    icon: "layout",
   },
   {
     number: "04",
     title: "Graphic Design",
     description:
-      "Flexible visual systems for launches, publications, social content, and everything between.",
+      "For launches and stories that need a flexible, recognizable visual system across physical and digital media.",
     capabilities: ["Art direction", "Campaign assets", "Editorial design"],
-    icon: "pencil",
   },
   {
     number: "05",
     title: "Motion Graphics",
     description:
-      "Purposeful motion that gives identities energy, clarifies ideas, and holds attention.",
+      "For brands that need movement with meaning—giving identity behavior while guiding attention and understanding.",
     capabilities: ["Brand motion", "Social content", "Explainers"],
-    icon: "play",
   },
   {
     number: "06",
     title: "Digital Strategy",
     description:
-      "Focused creative roadmaps that connect audience insight, positioning, and measurable action.",
+      "For ideas that need a focused path connecting audience insight, positioning, content, and experience.",
     capabilities: ["Discovery", "Content direction", "Experience planning"],
-    icon: "compass",
   },
 ];
 
@@ -71,108 +88,127 @@ export const PROCESS_STEPS = [
     number: "01",
     title: "Discover",
     description:
-      "We listen closely, study your audience, and uncover the real opportunity behind the brief.",
+      "We examine the audience, context, constraints, and opportunity behind the brief.",
     detail: "Context before concepts",
   },
   {
     number: "02",
     title: "Define",
     description:
-      "Together, we set a sharp creative direction, practical scope, and shared measures of success.",
+      "We agree on a sharp direction, practical scope, milestones, and measures of success.",
     detail: "Clarity before craft",
   },
   {
     number: "03",
     title: "Design",
     description:
-      "Ideas become a distinctive, flexible system through focused exploration and open collaboration.",
+      "We turn the direction into a distinctive system through focused exploration and collaboration.",
     detail: "Systems, not surfaces",
   },
   {
     number: "04",
     title: "Deliver",
     description:
-      "We refine every detail, prepare useful handoff tools, and help the work land with confidence.",
+      "We refine, document, and prepare the work so it can launch and keep working in real life.",
     detail: "Ready for real life",
   },
 ];
 
+// Add or replace projects here. Optional fields: gallery, result, url, featured.
 export const CASE_STUDIES = [
   {
-    id: "aurelia-identity",
-    category: "Brand strategy · Packaging",
-    title: "E-commerce Brand Identity",
-    project: "Aurelia Objects",
-    description:
-      "A quiet luxury identity for a growing homeware label that needed to feel considered from first click to unboxing.",
-    solution:
-      "A warm typographic system, sculptural monogram, and modular packaging language bring one recognizable voice to every touchpoint.",
-    outcome: "12-piece identity toolkit",
-    image: "/projects/aurelia-identity.svg",
-    imageAlt:
-      "Concept packaging, stationery, and monogram for the fictional Aurelia Objects identity",
+    slug: "aurelia-objects",
+    name: "Aurelia Objects",
+    type: "Brand system · Commerce",
+    year: "Concept",
+    summary:
+      "A bold, modular identity for an emerging objects label—designed to remain coherent from product discovery to delivery.",
+    challenge:
+      "Give an emerging objects label a distinctive identity that can stretch confidently across every customer touchpoint.",
+    approach:
+      "A modular symbol, direct typography, and high-contrast packaging grammar make every application recognizably Aurelia.",
+    services: ["Strategy", "Identity", "Packaging", "Commerce direction"],
+    cover: "/projects/aurelia-identity.svg",
+    coverAlt:
+      "Bold modular packaging, stationery, and geometric symbol created for the fictional Aurelia Objects identity",
+    status: "Self-initiated concept",
+    featured: true,
   },
   {
-    id: "morrow-mobile",
-    category: "Product design · UI/UX",
-    title: "Mobile App UI Design",
-    project: "Morrow Journal",
-    description:
-      "A wellbeing concept that needed to make daily reflection feel inviting rather than like another task to complete.",
-    solution:
-      "A calm visual rhythm, accessible type, and a focused entry flow turn complex tracking into a small, repeatable ritual.",
-    outcome: "4-step core reflection flow",
-    image: "/projects/morrow-mobile.svg",
-    imageAlt:
-      "Three mobile interface screens for the fictional Morrow Journal wellbeing app",
+    slug: "morrow-journal",
+    name: "Morrow Journal",
+    type: "Product design · UI/UX",
+    year: "Concept",
+    summary:
+      "A calm product experience that turns personal reflection into a focused, repeatable daily ritual.",
+    challenge:
+      "Make daily reflection feel supportive and useful instead of becoming another complicated task.",
+    approach:
+      "An accessible interface system and concise guided flow reduce friction while keeping progress easy to understand.",
+    services: ["Product strategy", "User flows", "Prototype", "UI system"],
+    cover: "/projects/morrow-mobile.svg",
+    coverAlt:
+      "Three structured mobile interface screens for the fictional Morrow Journal reflection app",
+    status: "Self-initiated concept",
   },
   {
-    id: "norr-editorial",
-    category: "Digital direction · Web",
-    title: "Website Redesign Project",
-    project: "Norr Architecture",
-    description:
-      "An architecture practice needed a portfolio that gave its work room to breathe while making expertise easier to navigate.",
-    solution:
-      "An editorial grid, project-led storytelling, and disciplined information hierarchy balance visual impact with a direct path to inquiry.",
-    outcome: "6 reusable page patterns",
-    image: "/projects/norr-editorial.svg",
-    imageAlt:
-      "Editorial desktop and tablet layouts for the fictional Norr Architecture website",
+    slug: "norr-architecture",
+    name: "Norr Architecture",
+    type: "Digital direction · Web",
+    year: "Concept",
+    summary:
+      "An editorial portfolio system that gives architectural work room to breathe and expertise a clear structure.",
+    challenge:
+      "Create a portfolio that prioritizes the work while making a broad architectural practice easy to navigate.",
+    approach:
+      "A disciplined editorial grid and reusable project stories balance visual impact with a direct route to inquiry.",
+    services: ["Content structure", "Art direction", "Responsive UI", "Page system"],
+    cover: "/projects/norr-editorial.svg",
+    coverAlt:
+      "Editorial desktop and tablet website compositions for the fictional Norr Architecture practice",
+    status: "Self-initiated concept",
   },
   {
-    id: "luma-campaign",
-    category: "Campaign · Motion direction",
-    title: "Marketing Campaign Design",
-    project: "Luma Culture Week",
-    description:
-      "A new cultural programme needed a launch language energetic enough for the city and flexible enough for every format.",
-    solution:
-      "A bold modular composition, expressive type, and motion-ready frames create one campaign system across streets and screens.",
-    outcome: "18-format campaign system",
-    image: "/projects/luma-campaign.svg",
-    imageAlt:
-      "Posters, social tiles, and a digital billboard for the fictional Luma Culture Week campaign",
+    slug: "luma-culture-week",
+    name: "Luma Culture Week",
+    type: "Campaign · Motion direction",
+    year: "Concept",
+    summary:
+      "A kinetic campaign language created to unite a varied cultural programme across streets and screens.",
+    challenge:
+      "Build an energetic launch system flexible enough for many events, audiences, formats, and locations.",
+    approach:
+      "Expressive type, vivid fields, and motion-ready frames combine as a recognizable modular toolkit.",
+    services: ["Campaign idea", "Visual toolkit", "Social system", "Motion direction"],
+    cover: "/projects/luma-campaign.svg",
+    coverAlt:
+      "Vivid posters, social tiles, and digital billboard artwork for the fictional Luma Culture Week campaign",
+    status: "Self-initiated concept",
   },
 ];
 
-export const ABOUT_VALUES = [
+export const STUDIO_MODEL = [
   {
-    title: "Strategy with soul",
+    number: "01",
+    title: "Direct collaboration",
     description:
-      "Every aesthetic choice begins with a reason and ends with a feeling.",
+      "Work directly with the person shaping the strategy, system, and details—without layers of account handling.",
   },
   {
-    title: "Small team, close collaboration",
+    number: "02",
+    title: "Defined milestones",
     description:
-      "You work directly with the people shaping the thinking and the details.",
+      "Clear decisions, practical checkpoints, and open communication keep every engagement moving with purpose.",
   },
   {
-    title: "Built to keep working",
+    number: "03",
+    title: "Reusable handoff systems",
     description:
-      "We create flexible systems your team can use confidently after launch.",
+      "The final work includes the patterns and guidance needed to stay coherent long after the first launch.",
   },
 ];
+
+export const ABOUT_VALUES = STUDIO_MODEL;
 
 export const INQUIRY_SERVICE_OPTIONS = [
   "UI/UX Design",
@@ -201,18 +237,5 @@ export const TIMELINE_OPTIONS = [
   "I'm flexible",
 ];
 
-// Replace these editable profile placeholders with confirmed studio URLs before launch.
-export const SOCIAL_LINKS = [
-  {
-    label: "Instagram",
-    href: "https://www.instagram.com/syntharaa.studio",
-  },
-  {
-    label: "Behance",
-    href: "https://www.behance.net/syntharaa",
-  },
-  {
-    label: "LinkedIn",
-    href: "https://www.linkedin.com/company/syntharaa",
-  },
-];
+// Keep social profiles hidden until the studio URLs are confirmed.
+export const SOCIAL_LINKS = [];

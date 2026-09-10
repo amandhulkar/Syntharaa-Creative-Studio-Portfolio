@@ -4,21 +4,19 @@ const config = {
     extend: {
       colors: {
         ink: "rgb(var(--color-ink) / <alpha-value>)",
-        wine: "rgb(var(--color-wine) / <alpha-value>)",
-        maroon: "rgb(var(--color-maroon) / <alpha-value>)",
-        burgundy: "rgb(var(--color-burgundy) / <alpha-value>)",
-        gold: "rgb(var(--color-gold) / <alpha-value>)",
-        cream: "rgb(var(--color-cream) / <alpha-value>)",
-        paper: "rgb(var(--color-paper) / <alpha-value>)",
+        canvas: "rgb(var(--color-canvas) / <alpha-value>)",
+        surface: "rgb(var(--color-surface) / <alpha-value>)",
         muted: "rgb(var(--color-muted) / <alpha-value>)",
+        line: "rgb(var(--color-line) / <alpha-value>)",
+        accent: "rgb(var(--color-accent) / <alpha-value>)",
+        signal: "rgb(var(--color-signal) / <alpha-value>)",
       },
       fontFamily: {
         sans: ["var(--font-sans)", "ui-sans-serif", "system-ui"],
-        display: ["var(--font-display)", "Georgia", "serif"],
+        display: ["var(--font-display)", "ui-sans-serif", "system-ui"],
       },
       boxShadow: {
-        card: "0 24px 70px rgba(43, 9, 19, 0.10)",
-        glow: "0 0 0 1px rgba(199, 164, 96, 0.25), 0 24px 80px rgba(12, 3, 6, 0.32)",
+        panel: "0 24px 80px rgba(10, 10, 10, 0.10)",
       },
     },
   },

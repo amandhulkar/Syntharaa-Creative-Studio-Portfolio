@@ -103,7 +103,7 @@ export const ContactForm = () => {
       <div className="grid min-w-0 gap-5 sm:grid-cols-2">
         <label className="flex min-w-0 flex-col">
           <span className="field-label">
-            Name <span aria-hidden className="text-burgundy">*</span>
+            Name <span aria-hidden className="text-red-700">*</span>
           </span>
           <input
             ref={nameRef}
@@ -120,7 +120,7 @@ export const ContactForm = () => {
             aria-describedby={errors.name ? "name-error" : undefined}
           />
           {errors.name && (
-            <span id="name-error" className="mt-2 text-sm text-burgundy">
+            <span id="name-error" className="mt-2 text-sm text-red-700">
               {errors.name}
             </span>
           )}
@@ -128,7 +128,7 @@ export const ContactForm = () => {
 
         <label className="flex min-w-0 flex-col">
           <span className="field-label">
-            Email <span aria-hidden className="text-burgundy">*</span>
+            Email <span aria-hidden className="text-red-700">*</span>
           </span>
           <input
             ref={emailRef}
@@ -145,7 +145,7 @@ export const ContactForm = () => {
             aria-describedby={errors.email ? "email-error" : undefined}
           />
           {errors.email && (
-            <span id="email-error" className="mt-2 text-sm text-burgundy">
+            <span id="email-error" className="mt-2 text-sm text-red-700">
               {errors.email}
             </span>
           )}
@@ -217,7 +217,7 @@ export const ContactForm = () => {
 
       <label className="flex min-w-0 flex-col">
         <span className="field-label">
-          Project brief <span aria-hidden className="text-burgundy">*</span>
+          Project brief <span aria-hidden className="text-red-700">*</span>
         </span>
         <textarea
           ref={briefRef}
@@ -241,7 +241,7 @@ export const ContactForm = () => {
           {form.brief.length}/{maxBriefLength} characters
         </span>
         {errors.brief && (
-          <span id="brief-error" className="mt-1 text-sm text-burgundy">
+          <span id="brief-error" className="mt-1 text-sm text-red-700">
             {errors.brief}
           </span>
         )}
@@ -256,7 +256,7 @@ export const ContactForm = () => {
           aria-live="polite"
           className={cn(
             "min-w-0 text-sm [overflow-wrap:anywhere]",
-            status === "error" ? "text-burgundy" : "text-muted",
+            status === "error" ? "text-red-700" : "text-muted",
           )}
         >
           {status === "idle" &&
@@ -269,7 +269,7 @@ export const ContactForm = () => {
         By submitting, you agree to be contacted by email. This form opens your
         mail client with a draft addressed to{" "}
         <a
-          className="font-semibold text-maroon underline underline-offset-4 [overflow-wrap:anywhere]"
+          className="font-semibold text-accent underline underline-offset-4 [overflow-wrap:anywhere]"
           href={`mailto:${STUDIO.email}`}
         >
           {STUDIO.email}

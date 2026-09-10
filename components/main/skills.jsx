@@ -2,84 +2,43 @@
 
 import { motion } from "framer-motion";
 
-import { ServiceIcon } from "@/components/sub/service-icon";
-import { SERVICES } from "@/constants";
-import { revealUp, stagger } from "@/lib/motion";
+import { SERVICES, STUDIO_COPY } from "@/constants";
+import { fadeUp, staggerSection, viewportOnce } from "@/lib/motion";
 
-export const Skills = () => {
-  return (
-    <section
-      id="services"
-      aria-labelledby="services-heading"
-      className="section-pad container-shell"
-    >
-      <div className="flex flex-col gap-10 sm:gap-16">
-        <div className="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
-          <div className="max-w-2xl">
-            <span className="eyebrow text-maroon">What we do</span>
-            <h2
-              id="services-heading"
-              className="display-title mt-6 text-ink"
-            >
-              Six capabilities,{" "}
-              <br className="hidden sm:block" />
-              <span className="text-gold">one studio.</span>
-            </h2>
-          </div>
-          <p className="max-w-md text-base leading-relaxed text-muted">
-            We work end to end, so a single project never has to be passed
-            between disconnected teams.
-          </p>
+export const Skills = () => (
+  <section id="services" aria-labelledby="services-heading" className="section-pad border-t border-line">
+    <motion.div initial="hidden" whileInView="visible" viewport={viewportOnce} variants={staggerSection}>
+      <motion.div variants={fadeUp} className="section-intro">
+        <div>
+          <span className="eyebrow text-accent">Ways we can help</span>
+          <h2 id="services-heading" className="section-title mt-5 max-w-[9ch]">One idea, shaped across every expression.</h2>
         </div>
+        <p className="max-w-xl text-base leading-relaxed text-muted sm:text-lg">{STUDIO_COPY.servicesIntroduction}</p>
+      </motion.div>
 
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.15 }}
-          variants={stagger}
-          className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3"
-        >
-          {SERVICES.map((service) => (
-            <motion.article
-              key={service.title}
-              variants={revealUp}
-              className="group relative min-w-0 overflow-hidden rounded-2xl border border-wine/10 bg-paper p-5 shadow-card transition duration-300 hover:-translate-y-1 hover:border-gold/40 hover:shadow-glow sm:p-8"
-            >
-              <div className="flex min-w-0 items-start justify-between gap-4">
-                <span className="inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-wine/15 bg-wine text-cream">
-                  <ServiceIcon
-                    name={service.icon}
-                    className="h-6 w-6"
-                  />
-                </span>
-                <span className="font-display text-3xl font-medium text-wine/25">
-                  {service.number}
-                </span>
-              </div>
+      <motion.ol variants={staggerSection} className="mt-10 border-t border-line lg:mt-16">
+        {SERVICES.map((service) => (
+          <motion.li
+            key={service.title}
+            variants={fadeUp}
+            className="service-row group grid min-w-0 gap-5 border-b border-line py-7 sm:grid-cols-[3rem_minmax(11rem,0.58fr)_minmax(0,1fr)] sm:items-start sm:gap-6 lg:grid-cols-[4rem_minmax(15rem,0.65fr)_minmax(0,0.8fr)_minmax(15rem,0.55fr)] lg:py-9"
+          >
+            <span className="font-display text-xs font-bold text-accent">{service.number}</span>
+            <h3 className="font-display text-2xl font-medium tracking-[-0.045em] sm:text-3xl">{service.title}</h3>
+            <p className="max-w-xl text-sm leading-relaxed text-muted sm:col-start-3 lg:col-start-auto">{service.description}</p>
+            <ul className="flex flex-wrap gap-x-4 gap-y-2 sm:col-start-2 sm:col-end-4 lg:col-auto lg:justify-end">
+              {service.capabilities.map((capability) => (
+                <li key={capability} className="text-xs font-semibold text-ink/55">{capability}</li>
+              ))}
+            </ul>
+          </motion.li>
+        ))}
+      </motion.ol>
 
-              <h3 className="mt-6 font-display text-2xl font-medium text-ink">
-                {service.title}
-              </h3>
-              <p className="mt-3 text-base leading-relaxed text-muted">
-                {service.description}
-              </p>
-
-              <ul className="mt-5 flex flex-wrap gap-2">
-                {service.capabilities.map((capability) => (
-                  <li
-                    key={capability}
-                    className="rounded-full border border-wine/10 px-3 py-1 text-xs font-medium text-wine/70"
-                  >
-                    {capability}
-                  </li>
-                ))}
-              </ul>
-
-              <span className="absolute inset-x-0 bottom-0 h-px bg-gold/70 scale-x-0 transition-transform duration-300 group-hover:scale-x-100" />
-            </motion.article>
-          ))}
-        </motion.div>
-      </div>
-    </section>
-  );
-};
+      <motion.div variants={fadeUp} className="mt-8 flex flex-col gap-4 bg-ink px-5 py-6 text-white sm:flex-row sm:items-center sm:justify-between sm:px-7">
+        <p className="max-w-2xl font-display text-xl font-medium tracking-[-0.035em] sm:text-2xl">Not sure which service fits? Start with the challenge, not a checklist.</p>
+        <a href="#contact" className="button-secondary shrink-0">Share your brief <span aria-hidden>↗</span></a>
+      </motion.div>
+    </motion.div>
+  </section>
+);

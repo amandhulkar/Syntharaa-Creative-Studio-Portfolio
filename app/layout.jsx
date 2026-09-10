@@ -1,8 +1,8 @@
-import { Cormorant_Garamond, Manrope } from "next/font/google";
-import { MotionProvider } from "@/components/providers/motion-provider";
+import { Manrope, Space_Grotesk } from "next/font/google";
 
 import { Footer } from "@/components/main/footer";
 import { Navbar } from "@/components/main/navbar";
+import { MotionProvider } from "@/components/providers/motion-provider";
 import { siteConfig } from "@/config";
 
 import "./globals.css";
@@ -13,7 +13,7 @@ const sans = Manrope({
   display: "swap",
 });
 
-const display = Cormorant_Garamond({
+const display = Space_Grotesk({
   subsets: ["latin"],
   variable: "--font-display",
   display: "swap",
@@ -21,7 +21,7 @@ const display = Cormorant_Garamond({
 });
 
 export const viewport = {
-  themeColor: "#2b0913",
+  themeColor: "#0a0a0a",
   colorScheme: "light",
 };
 

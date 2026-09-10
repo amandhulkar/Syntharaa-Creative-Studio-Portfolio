@@ -1,27 +1,63 @@
+"use client";
+
+import Image from "next/image";
+import { motion, useReducedMotion } from "framer-motion";
+
 import { HeroContent } from "@/components/sub/hero-content";
+import { CASE_STUDIES } from "@/constants";
+import { mediaReveal, shellReveal } from "@/lib/motion";
 
-export const Hero = () => {
+const FeaturedWork = () => {
+  const reduceMotion = useReducedMotion();
+  const featured = CASE_STUDIES.find((project) => project.featured) ?? CASE_STUDIES[0];
+
+  if (!featured) return null;
+
   return (
-    <section
-      id="hero"
-      aria-labelledby="hero-headline"
-      className="relative flex min-h-svh flex-col overflow-hidden bg-wine"
-    >
-      <div className="pointer-events-none absolute inset-0">
-        <div className="absolute inset-0 bg-[radial-gradient(60%_50%_at_80%_15%,rgba(199,164,96,0.18),transparent_70%)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(45%_40%_at_10%_90%,rgba(244,235,220,0.08),transparent_60%)]" />
-        <div className="warm-grain absolute inset-0" />
-      </div>
+    <motion.figure variants={mediaReveal} className="hero-media group relative min-h-[25rem] overflow-hidden sm:min-h-[34rem] lg:min-h-[44rem]">
+      <motion.div
+        animate={reduceMotion ? undefined : { y: [0, -8, 0], rotate: [-0.5, 0.35, -0.5] }}
+        transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }}
+        className="pointer-motion absolute inset-[6%] overflow-hidden bg-surface shadow-[0_32px_90px_rgb(20_18_31/0.24)] sm:inset-[8%]"
+      >
+        <Image
+          src={featured.cover}
+          alt={featured.coverAlt}
+          fill
+          priority
+          sizes="(max-width: 1023px) 100vw, 48vw"
+          className="object-cover transition duration-700 group-hover:scale-[1.015]"
+        />
+      </motion.div>
 
-      <div className="container-shell relative flex flex-1 flex-col justify-between py-6">
-        <HeroContent />
-      </div>
+      <div aria-hidden className="absolute left-5 top-5 h-16 w-16 border-l border-t border-white/50 sm:left-8 sm:top-8" />
+      <div aria-hidden className="absolute bottom-5 right-5 h-16 w-16 border-b border-r border-white/50 sm:bottom-8 sm:right-8" />
 
-      <div className="relative hidden h-24 w-full items-end justify-center pb-4 md:flex">
-        <a href="#services" aria-label="Scroll to services" className="text-cream/50 transition hover:text-gold">
-          <span className="block h-10 w-px bg-current" />
+      <figcaption className="absolute inset-x-4 bottom-4 flex min-w-0 items-end justify-between gap-4 bg-ink/90 p-4 text-white backdrop-blur-md sm:inset-x-7 sm:bottom-7 sm:p-5">
+        <div className="min-w-0">
+          <p className="micro-label text-white/45">Featured study · {featured.year}</p>
+          <p className="mt-2 truncate font-display text-xl font-medium tracking-[-0.04em] sm:text-2xl">{featured.name}</p>
+        </div>
+        <a href="#work" className="grid h-11 w-11 shrink-0 place-items-center border border-white/20 transition hover:border-accent hover:bg-accent" aria-label={`Explore ${featured.name}`}>
+          <span aria-hidden>↘</span>
         </a>
-      </div>
-    </section>
+      </figcaption>
+    </motion.figure>
   );
 };
+
+export const Hero = () => (
+  <section id="hero" aria-labelledby="hero-headline" className="section-pad hero-section">
+    <motion.div
+      initial="hidden"
+      animate="visible"
+      variants={shellReveal}
+      className="grid min-w-0 gap-10 lg:grid-cols-[1.03fr_0.97fr] lg:items-stretch lg:gap-8 xl:gap-14"
+    >
+      <div className="min-w-0 py-4 sm:py-8 lg:flex lg:min-h-[44rem] lg:items-stretch lg:py-10">
+        <HeroContent />
+      </div>
+      <FeaturedWork />
+    </motion.div>
+  </section>
+);

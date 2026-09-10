@@ -3,78 +3,71 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 
-import { revealUp } from "@/lib/motion";
+import { fadeUp } from "@/lib/motion";
 
-export const ProjectCard = ({
-  category,
-  title,
-  project,
-  description,
-  solution,
-  outcome,
-  image,
-  imageAlt,
-}) => {
+const padNumber = (value) => String(value).padStart(2, "0");
+
+export const ProjectCard = ({ project, position, total, priority = false }) => {
+  const projectHref = project.url || "#contact";
+  const projectAction = project.url ? "View live project" : "Discuss a similar project";
+
   return (
-    <motion.article
-      variants={revealUp}
-      className="group relative flex min-w-0 flex-col overflow-hidden rounded-2xl border border-wine/10 bg-paper shadow-card transition duration-300 hover:-translate-y-1 hover:shadow-glow"
-    >
-      <div className="relative aspect-[4/3] overflow-hidden">
-        <Image
-          src={image}
-          alt={imageAlt}
-          fill
-          sizes="(max-width: 767px) 100vw, 50vw"
-          priority={false}
-          loading="lazy"
-          className="object-cover transition duration-500 group-hover:scale-105"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-wine/60 via-wine/10 to-transparent" />
-        <div className="absolute left-3 right-3 top-3 sm:left-5 sm:right-auto sm:top-5 sm:max-w-[70%]">
-          <span className="inline-flex max-w-full items-center rounded-full border border-cream/25 bg-wine/50 px-2.5 py-1 text-[0.62rem] font-bold uppercase tracking-[0.12em] text-cream backdrop-blur sm:px-3 sm:text-[0.68rem] sm:tracking-[0.18em]">
-            {category}
-          </span>
-        </div>
-        <div className="absolute bottom-3 right-3 sm:bottom-5 sm:right-5">
-          <span className="font-display text-xl font-medium text-cream/90 sm:text-2xl">
-            {outcome.split(" ")[0]}
-          </span>
-        </div>
+    <motion.article variants={fadeUp} className="project-card md:hidden">
+      <div className="flex items-center justify-between gap-4 border-b border-line pb-3">
+        <span className="micro-label text-ink/45">{padNumber(position)} / {padNumber(total)}</span>
+        {project.status && <span className="micro-label text-accent">{project.status}</span>}
       </div>
 
-      <div className="flex min-w-0 flex-1 flex-col gap-4 p-5 sm:p-7">
-        <div className="flex min-w-0 flex-col items-start gap-2 sm:flex-row sm:items-center sm:justify-between sm:gap-3">
-          <h3 className="min-w-0 font-display text-2xl font-medium text-ink">
-            {title}
-          </h3>
-          <span className="text-xs font-bold uppercase tracking-[0.14em] text-gold sm:shrink-0 sm:tracking-[0.18em]">
-            {project}
-          </span>
+      <div className="relative mt-4 aspect-[8/5] overflow-hidden bg-canvas">
+        <Image
+          src={project.cover}
+          alt={project.coverAlt}
+          fill
+          priority={priority}
+          sizes="100vw"
+          className="object-cover"
+        />
+      </div>
+
+      <div className="pt-5">
+        <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
+          <p className="micro-label text-accent">{project.type}</p>
+          <p className="text-xs font-semibold text-muted">{project.year}</p>
         </div>
-        <p className="text-base leading-relaxed text-muted">
-          {description}
-        </p>
-        <div className="mt-auto rounded-xl border border-wine/10 bg-wine/5 p-4">
-          <p className="text-xs font-bold uppercase tracking-[0.16em] text-maroon">
-            Approach
-          </p>
-          <p className="mt-2 text-sm leading-relaxed text-ink/80">
-            {solution}
-          </p>
-        </div>
-        <div className="flex min-w-0 flex-col items-stretch gap-4 border-t border-wine/10 pt-4 sm:flex-row sm:items-center sm:justify-between sm:gap-3">
-          <span className="min-w-0 text-sm font-medium text-muted">
-            Outcome: <span className="text-ink">{outcome}</span>
-          </span>
-          <a
-            href="#contact"
-            className="button-light w-full text-xs sm:w-auto sm:shrink-0"
-          >
-            Start a similar project
-            <span aria-hidden>→</span>
-          </a>
-        </div>
+        <h3 className="mt-3 font-display text-3xl font-medium tracking-[-0.05em]">{project.name}</h3>
+        <p className="mt-4 text-base leading-relaxed text-muted">{project.summary}</p>
+
+        <dl className="mt-6 grid gap-5 border-t border-line pt-5">
+          <div>
+            <dt className="micro-label">Challenge</dt>
+            <dd className="mt-2 text-sm leading-relaxed text-muted">{project.challenge}</dd>
+          </div>
+          <div>
+            <dt className="micro-label">Approach</dt>
+            <dd className="mt-2 text-sm leading-relaxed text-muted">{project.approach}</dd>
+          </div>
+          {project.result && (
+            <div>
+              <dt className="micro-label">Result</dt>
+              <dd className="mt-2 text-sm leading-relaxed text-muted">{project.result}</dd>
+            </div>
+          )}
+        </dl>
+
+        {project.services?.length > 0 && (
+          <ul aria-label={`${project.name} services`} className="mt-6 flex flex-wrap gap-x-4 gap-y-2">
+            {project.services.map((item) => <li key={item} className="text-xs font-semibold text-ink/60">{item}</li>)}
+          </ul>
+        )}
+
+        <a
+          href={projectHref}
+          target={project.url ? "_blank" : undefined}
+          rel={project.url ? "noreferrer" : undefined}
+          className="mt-6 flex min-h-12 items-center justify-between border-t border-line pt-4 text-sm font-bold"
+        >
+          {projectAction} <span aria-hidden>↗</span>
+        </a>
       </div>
     </motion.article>
   );
